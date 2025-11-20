@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login RainHUB</title>
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
+
+<div class="bg-white p-8 w-full max-w-md shadow-lg rounded-lg">
+    <h2 class="text-2xl font-semibold text-center mb-6">RainHUB Login</h2>
+
+    <?php if ($this->session->flashdata('error')): ?>
+        <p class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+            <?= $this->session->flashdata('error') ?>
+        </p>
+    <?php endif; ?>
+
+    <form action="<?= base_url('auth/login') ?>" method="POST" class="space-y-4">
+        <div>
+            <label class="block mb-1 text-gray-700">Email</label>
+            <input type="email" name="email" required class="w-full border rounded p-2">
+        </div>
+
+        <div>
+            <label class="block mb-1 text-gray-700">Password</label>
+            <input type="password" name="password" required class="w-full border rounded p-2">
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white py-2 rounded hover:bg-gray-900">
+            Login
+        </button>
+    </form>
+</div>
+
+</body>
+</html>
