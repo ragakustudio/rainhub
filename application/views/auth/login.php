@@ -10,7 +10,14 @@
 <body class="min-h-screen flex items-center justify-center bg-gray-100">
 
 <div class="bg-white p-8 w-full max-w-md shadow-lg rounded-lg">
-    <h2 class="text-2xl font-semibold text-center mb-6">RainHUB Login</h2>
+    <div class="flex justify-center mb-6">
+    <img 
+        src="<?= base_url('assets/img/logo/main-logo.webp') ?>" 
+        alt="RainHub Logo" 
+        class="h-14 drop-shadow-md"
+    >
+</div>
+
 
     <?php if ($this->session->flashdata('error')): ?>
         <p class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
@@ -29,9 +36,19 @@
             <input type="password" name="password" required class="w-full border rounded p-2">
         </div>
 
-        <button type="submit" class="w-full bg-primary text-white py-2 rounded hover:bg-gray-900">
+        <button 
+            type="submit"
+            class="
+                w-full 
+                bg-primary-500 
+                hover:bg-primary-600 
+                text-white 
+                py-3 rounded-lg 
+                font-semibold 
+                transition">
             Login
         </button>
+
     </form>
 </div>
 

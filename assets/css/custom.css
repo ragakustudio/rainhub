@@ -1,0 +1,28 @@
+/* ITEM UTAMA */
+.sidebar-item {
+    @apply flex items-center gap-3 text-lg text-white py-2 px-4 rounded-xl transition;
+}
+
+/* Aktif → background putih + teks gelap */
+.sidebar-item.active {
+    align-items: center;
+    background-color: #333333;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+/* ICON di item aktif → warna gelap */
+.sidebar-item.active i {
+    color: #fff !important;
+}
+
+
+/* SUBMENU */
+.submenu-item {
+    @apply block pl-8 py-1 text-white/80 text-base transition;
+}
+
+.submenu-item.active {
+    @apply bg-white text-[#272727] font-semibold rounded-lg;
+}

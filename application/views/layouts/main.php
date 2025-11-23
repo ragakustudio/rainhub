@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= $page_title ?? 'RainHUB' ?></title>
+<?php $this->load->view('layouts/header'); ?>
 
-    <!-- Tailwind Build -->
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+<?php $this->load->view('layouts/sidebar'); ?>
 
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<div class="flex-1 min-h-screen">
 
-</head>
+    <?php $this->load->view('layouts/navbar'); ?>
 
-<body class="bg-gray-100 flex">
-
-    <!-- SIDEBAR -->
-    <?php $this->load->view('layouts/sidebar'); ?>
-
-    <!-- MAIN CONTENT WRAPPER -->
-    <div class="flex-1 flex flex-col min-h-screen">
-        
-        <!-- NAVBAR -->
-        <?php $this->load->view('layouts/navbar'); ?>
-
-        <!-- PAGE CONTENT -->
-        <main class="p-6">
-            <?= $content ?>
-        </main>
-
+    <div class="p-6">
+        <?= $content ?>
     </div>
+</div>
 
 </body>
 </html>

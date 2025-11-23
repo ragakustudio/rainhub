@@ -52,3 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['portfolio/services'] = 'portfolio/services';
+$route['portfolio/services/store'] = 'portfolio/store_service';
+$route['portfolio/services/delete/(:num)'] = 'portfolio/delete_service/$1';
+$route['portfolio/edit/(:num)'] = 'portfolio/edit/$1';
+$route['portfolio/update/(:num)'] = 'portfolio/update/$1';

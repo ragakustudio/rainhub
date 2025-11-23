@@ -1,37 +1,101 @@
-<aside class="w-64 bg-[#1E293B] text-gray-200 min-h-screen p-6 space-y-4">
-    <h1 class="text-2xl font-bold text-white mb-8">RainHUB</h1>
+<!-- SIDEBAR -->
+<div 
+  class="
+    w-64
+    bg-[#1E293B]
+    text-white
+    min-h-screen
+    px-5 py-6
+    font-sans
+    ">
 
-    <nav class="space-y-1 text-sm">
+    <!-- Logo -->
+    <div class="flex items-center gap-2 mb-8">
+        <img src="<?= base_url('assets/img/logo/rainhub-logo-white.webp') ?>" 
+             class="w-8">
+    </div>
 
-        <a href="<?= base_url('dashboard') ?>"
-            class="flex items-center gap-3 px-4 py-2 rounded-lg 
-            <?= ($active == 'dashboard') ? 'bg-[#334155] text-white' : 'hover:bg-[#334155] hover:text-white' ?>">
-            <span class="material-icons-outlined text-lg">dashboard</span>
-            Dashboard
-        </a>
+    <!-- Menu Title -->
+    <p class="text-xs text-gray-400 uppercase mb-3">Menu</p>
 
-        <a href="<?= base_url('portfolio') ?>"
-            class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#334155] hover:text-white">
-            <span class="material-icons-outlined text-lg">folder</span>
-            Portfolio
-        </a>
+    <!-- DASHBOARD -->
+    
+   <!-- Dashboard -->
+    <?php 
+        $this->load->view('components/sidebar_item', [
+            'href' => 'dashboard',
+            'icon' => 'brand-tabler',
+            'label' => 'Dashboard',
+            'code' => 'dashboard',
+            'active' => $active
+        ]);
+    ?>
 
-        <a href="<?= base_url('employee') ?>"
-            class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#334155] hover:text-white">
-            <span class="material-icons-outlined text-lg">groups</span>
-            Employees
-        </a>
+    <!-- PORTFOLIO GROUP -->
+    <p class="text-xs text-gray-400 uppercase mt-6 mb-2">Portfolio</p>
 
-        <a href="<?= base_url('inventory') ?>"
-            class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#334155] hover:text-white">
-            <span class="material-icons-outlined text-lg">inventory_2</span>
-            Inventory
-        </a>
+    <!-- Projects -->
+    <?php 
+        $this->load->view('components/sidebar_item', [
+            'href' => 'portfolio',
+            'icon' => 'brush',
+            'label' => 'Projects',
+            'code' => 'portfolio',
+            'active' => $active
+        ]);
+    ?>
 
-        <a href="<?= base_url('auth/logout') ?>" 
-           class="flex items-center gap-3 px-4 py-2 rounded-lg mt-6 text-red-300 hover:bg-red-500/10">
-            <span class="material-icons-outlined text-lg">logout</span>
-            Logout
-        </a>
-    </nav>
-</aside>
+    <!-- Deliverables -->
+    <?php 
+        $this->load->view('components/sidebar_item', [
+            'href' => 'portfolio/services',
+            'icon' => 'category',
+            'label' => 'Deliverables',
+            'code' => 'deliverables',
+            'active' => $active
+        ]);
+    ?>
+
+    <!-- OTHERS -->
+    <p class="text-xs text-gray-400 uppercase mt-6 mb-2">Others</p>
+
+    <!-- Employees -->
+    <?php 
+        $this->load->view('components/sidebar_item', [
+            'href' => '#',
+            'icon' => 'briefcase',
+            'label' => 'Employee Data',
+            'code' => 'employee',
+            'active' => $active
+        ]);
+    ?>
+
+    <!-- Inventory -->
+    <?php 
+        $this->load->view('components/sidebar_item', [
+            'href' => '#',
+            'icon' => 'archive',
+            'label' => 'Inventory',
+            'code' => 'inventory',
+            'active' => $active
+        ]);
+    ?>
+    
+    <!-- Inventory -->
+    <?php 
+        $this->load->view('components/sidebar_item', [
+            'href' => 'uikit',
+            'icon' => 'layer',
+            'label' => 'UI Kit',
+            'code' => 'uikit',
+            'active' => $active
+        ]);
+    ?>
+
+    <!-- LOGOUT -->
+    <a href="<?= base_url('auth/logout') ?>" 
+       class="flex items-center gap-3 px-3 py-2 text-red-300 hover:bg-red-500/20 rounded-lg mt-6">
+        <i class="fi fi-sr-door-open"></i>
+        Logout
+    </a>
+</div>

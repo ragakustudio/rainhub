@@ -6,11 +6,17 @@ class Dashboard extends CI_Controller {
         is_logged_in();
     }
 
-    public function index() {
-        $data['active'] = 'dashboard';
-        $data['page_title'] = 'Dashboard';
-        $data['content'] = $this->load->view('dashboard/index', [], true);
+    public function index()
+{
+    $data['page_title'] = 'Dashboard';
+    $data['active'] = 'dashboard';
 
-        $this->load->view('layouts/main', $data);
-    }
+    $viewData = [
+        // data apapun untuk view
+    ];
+
+    $data['content'] = $this->load->view('dashboard/index', $viewData, true);
+    $this->load->view('layouts/main', $data);
+}
+
 }
