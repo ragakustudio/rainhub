@@ -3,25 +3,25 @@ class Portfolio_model extends CI_Model {
 
     // GET ALL PORTFOLIO + SERVICE NAME
     public function get_all() {
-        return $this->db
-            ->select('p.*, s.name as service_name')
-            ->from('portfolio p')
-            ->join('services s', 's.id = p.service_id', 'left')
-            ->order_by('p.id', 'DESC')
-            ->get()
-            ->result();
-    }
+    return $this->db
+        ->select('p.*')
+        ->from('portfolio p')
+        ->order_by('p.id', 'DESC')
+        ->get()
+        ->result();
+}
+
 
     // GET ONE PORTFOLIO
     public function get_by_id($id) {
-        return $this->db
-            ->select('p.*, s.name as service_name')
-            ->from('portfolio p')
-            ->join('services s', 's.id = p.service_id', 'left')
-            ->where('p.id', $id)
-            ->get()
-            ->row();
-    }
+    return $this->db
+        ->select('p.*')
+        ->from('portfolio p')
+        ->where('p.id', $id)
+        ->get()
+        ->row();
+}
+
 
     // INSERT PORTFOLIO
     public function insert($data) {
@@ -57,4 +57,37 @@ class Portfolio_model extends CI_Model {
             ->get('portfolio_images')
             ->result();
     }
+
+    public function assign_service($portfolio_id, $service_id)
+{
+    return $this->db->insert('portfolio_services', [
+        'portfolio_id' => $portfolio_id,
+        'service_id' => $service_id
+    ]);
+}
+
+
+public function get_services($portfolio_id)
+{
+    return $this->db
+        ->select('s.*')
+        ->from('portfolio_services ps')
+        ->join('services s', 's.id = ps.service_id')
+        ->where('ps.portfolio_id', $portfolio_id)
+        ->get()
+        ->result();
+}
+
+public function get_services_by_portfolio($portfolio_id)
+{
+    return $this->db
+        ->select('service_id')
+        ->from('portfolio_services')
+        ->where('portfolio_id', $portfolio_id)
+        ->get()
+        ->result_array();
+}
+
+
+
 }

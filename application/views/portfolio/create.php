@@ -34,15 +34,19 @@
             </div>
         </div>
 
-        <div>
-            <label class="font-medium">Deliverables (Service)</label>
-            <select name="service_id" class="w-full border rounded p-2">
-                <option value="">Select Deliverable</option>
-                <?php foreach ($services as $s): ?>
-                    <option value="<?= $s->id ?>"><?= $s->name ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+        <div class="mb-4">
+    <label class="font-medium">Deliverables</label>
+
+    <div class="grid grid-cols-2 gap-2 mt-2">
+        <?php foreach ($services as $s): ?>
+        <label class="flex items-center gap-2">
+            <input type="checkbox" name="services[]" value="<?= $s->id ?>" class="rounded">
+            <span><?= $s->name ?></span>
+        </label>
+        <?php endforeach; ?>
+    </div>
+</div>
+
 
         <div>
             <label class="font-medium">Project Title</label>

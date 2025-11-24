@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
+    content: [
     "./application/views/**/*.php",
+    "./application/views/**/**/*.php",
+    "./application/**/*.php",
     "./public/**/*.html",
     "./assets/**/*.js",
   ],
@@ -100,9 +102,9 @@ module.exports = {
         md: "8px",
         lg: "12px",
         xl: "16px",
-        2xl: "32px",
-        3xl: "48px",
-        full: '9999px'
+        "2xl": "32px",
+        "3xl": "48px",
+        full: "9999px",
       },
 
       /* ----------------------------------------------------------
@@ -132,7 +134,5 @@ module.exports = {
     },
   },
 
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [],
 };

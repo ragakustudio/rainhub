@@ -12,7 +12,7 @@
     <!-- Logo -->
     <div class="flex items-center gap-2 mb-8">
         <img src="<?= base_url('assets/img/logo/rainhub-logo-white.webp') ?>" 
-             class="w-8">
+             class="w-1/2">
     </div>
 
     <!-- Menu Title -->
@@ -37,7 +37,7 @@
     <!-- Projects -->
     <?php 
         $this->load->view('components/sidebar_item', [
-            'href' => 'portfolio',
+            'href' => 'portfolio/index',
             'icon' => 'brush',
             'label' => 'Projects',
             'code' => 'portfolio',
@@ -48,7 +48,7 @@
     <!-- Deliverables -->
     <?php 
         $this->load->view('components/sidebar_item', [
-            'href' => 'portfolio/services',
+            'href' => 'portfolio/service',
             'icon' => 'category',
             'label' => 'Deliverables',
             'code' => 'deliverables',
@@ -85,7 +85,7 @@
     <?php 
         $this->load->view('components/sidebar_item', [
             'href' => 'uikit',
-            'icon' => 'layer',
+            'icon' => 'app-window',
             'label' => 'UI Kit',
             'code' => 'uikit',
             'active' => $active
@@ -93,9 +93,13 @@
     ?>
 
     <!-- LOGOUT -->
-    <a href="<?= base_url('auth/logout') ?>" 
-       class="flex items-center gap-3 px-3 py-2 text-red-300 hover:bg-red-500/20 rounded-lg mt-6">
-        <i class="fi fi-sr-door-open"></i>
-        Logout
-    </a>
+    <?php 
+        $this->load->view('components/sidebar_item', [
+            'href' => 'auth/logout',
+            'icon' => 'door-exit',
+            'label' => 'Logout',
+            'code' => 'logout',
+            'active' => $active
+        ]);
+    ?>
 </div>

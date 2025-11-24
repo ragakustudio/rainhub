@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($page_title) ? $page_title : 'RainHUB' ?></title>
 
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -14,11 +16,6 @@
     <!-- Flowbite (dropdown, popover) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
-    <!-- UICONS From Flaticon -->
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
-
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -26,7 +23,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
     <style>
-        body { background: #f4f6f9; }
+        body { background: #fff; }
     </style>
 </head>
 <body class="flex">
