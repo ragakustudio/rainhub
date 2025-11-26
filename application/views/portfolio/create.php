@@ -1,72 +1,23 @@
-<div class="bg-white p-6 rounded-lg shadow max-w-2xl">
+<div class="p-6">
 
-    <h2 class="text-xl font-semibold mb-4">Add New Portfolio</h2>
+  <h1 class="text-2xl font-semibold mb-6">Add New Project</h1>
 
-    <form action="<?= base_url('portfolio/store') ?>" method="POST" enctype="multipart/form-data" class="space-y-4">
+  <form action="<?= base_url('portfolio/store') ?>" method="POST" enctype="multipart/form-data" class="space-y-6">
 
-        <div>
-            <label class="font-medium">Client</label>
-            <input type="text" name="client" required class="w-full border rounded p-2">
-        </div>
-
-        <div>
-            <label class="font-medium">Project Year</label>
-            <select name="year" class="w-full border rounded p-2">
-                <?php for($y = date("Y"); $y >= 2000; $y--): ?>
-                    <option value="<?= $y ?>"><?= $y ?></option>
-                <?php endfor; ?>
-            </select>
-        </div>
-
-        <div>
-            <label class="font-medium">Discipline / Industry</label>
-            <input type="text" name="discipline" class="w-full border rounded p-2">
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <label class="font-medium">City</label>
-                <input type="text" name="city" class="w-full border rounded p-2">
-            </div>
-            <div>
-                <label class="font-medium">Country</label>
-                <input type="text" name="country" class="w-full border rounded p-2">
-            </div>
-        </div>
-
-        <div class="mb-4">
-    <label class="font-medium">Deliverables</label>
-
-    <div class="grid grid-cols-2 gap-2 mt-2">
-        <?php foreach ($services as $s): ?>
-        <label class="flex items-center gap-2">
-            <input type="checkbox" name="services[]" value="<?= $s->id ?>" class="rounded">
-            <span><?= $s->name ?></span>
-        </label>
-        <?php endforeach; ?>
-    </div>
-</div>
+    <?php 
+$this->load->view('portfolio/form', [
+    'portfolio'             => null,
+    'action'                => base_url('portfolio/store'),
+    'services_list'         => $services_list,
+    'deliverables_list'     => $deliverables_list,
+    'selected_services'     => [],
+    'selected_deliverables' => [],
+    'images'                => []
+]);
+?>
 
 
-        <div>
-            <label class="font-medium">Project Title</label>
-            <input type="text" name="title" class="w-full border rounded p-2">
-        </div>
 
-        <div>
-            <label class="font-medium">Description</label>
-            <textarea name="description" rows="4" class="w-full border rounded p-2"></textarea>
-        </div>
-
-        <div>
-            <label class="font-medium">Project Images (Multi-upload)</label>
-            <input type="file" name="images[]" multiple accept="image/*" class="w-full border rounded p-2">
-        </div>
-
-        <button type="submit" class="bg-primary text-white px-4 py-2 rounded">
-            Save
-        </button>
-
-    </form>
+  </form>
 
 </div>

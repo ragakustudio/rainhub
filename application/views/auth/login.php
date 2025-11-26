@@ -28,7 +28,7 @@
         <form action="<?= base_url('auth/login') ?>" method="POST" class="space-y-4">
             <div>
                 <label class="block mb-1 text-gray-700">Email</label>
-                <input type="email" name="email" required class="w-full border rounded p-2">
+                <input type="email" name="email" required class="w-full border rounded p-2" placeholder="info@gmail.com">
             </div>
 
             <div>

@@ -81,11 +81,30 @@ public function get_services($portfolio_id)
 public function get_services_by_portfolio($portfolio_id)
 {
     return $this->db
-        ->select('service_id')
-        ->from('portfolio_services')
-        ->where('portfolio_id', $portfolio_id)
+        ->select('ps.service_id, s.name')
+        ->from('portfolio_services ps')
+        ->join('services s', 's.id = ps.service_id')
+        ->where('ps.portfolio_id', $portfolio_id)
         ->get()
-        ->result_array();
+        ->result();
+}
+
+
+
+public function get_service_ids($portfolio_id)
+{
+    return array_column(
+        $this->db->select('service_id')->get_where('portfolio_services', ['portfolio_id' => $portfolio_id])->result_array(),
+        'service_id'
+    );
+}
+
+public function get_deliverable_ids($portfolio_id)
+{
+    return array_column(
+        $this->db->select('deliverable_id')->get_where('portfolio_deliverables', ['portfolio_id' => $portfolio_id])->result_array(),
+        'deliverable_id'
+    );
 }
 
 

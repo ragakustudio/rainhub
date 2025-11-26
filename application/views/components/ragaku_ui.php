@@ -153,15 +153,135 @@
 <!-- INPUTS & FORM FIELDS -->
 <section id="forms" class="space-y-3">
   <h3 class="text-lg font-medium">Inputs & forms</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
 
-    <!-- upgrade input di sini -->
-    <div class="flex flex-col gap-1">
-      <label class="text-sm font-medium text-neutral-700">Email</label>
-      <input class="w-full px-4 py-2 rounded-md border border-gray-300 
-                  focus:ring-2 focus:ring-primary-400 focus:border-primary-500"
-             placeholder="you@example.com">
-    </div>
+      <!-- Basic Input -->
+      <div>
+        <label class="mb-2 text-sm font-medium text-neutral-700">Input</label>
+        <input 
+          type="text"
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg
+                bg-white text-neutral-800 placeholder-gray-400
+                focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400"
+        />
+      </div>
+    
+      <!-- Input with Placeholder-->
+       <div>
+        <label class="text-sm font-medium text-neutral-700">Input with Placeholder</label>
+        <input 
+          type="text"
+          placeholder="info@gmail.com"
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg
+                bg-white text-neutral-800 placeholder-gray-400
+                focus:outline-none focus:ring-2 focus:ring-primary-400"
+        />
+      </div>
+
+      <!-- Input with Icon-->
+       <div>
+        <label class="text-sm font-medium text-neutral-700">Input with Placeholder</label>
+        
+        <input 
+            type="text"
+            placeholder="info@gmail.com"
+            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg
+                  bg-white text-neutral-800 placeholder-gray-400
+                  focus:outline-none focus:ring-2 focus:ring-primary-400"
+          />
+      </div>
+
+      <!-- Input with Icon-->
+      <div>
+  <label class="text-sm font-medium text-neutral-700 mb-1 block">Email</label>
+
+  <div class="relative">
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-400">
+      <i class="fi fi-rr-envelope text-lg"></i>
+    </span>
+
+    <input
+      type="text"
+      placeholder="info@gmail.com"
+      class="pl-10 w-full px-4 py-2.5 border border-gray-300 rounded-lg
+             bg-white text-neutral-800 placeholder-gray-400
+             focus:outline-none focus:ring-2 focus:ring-primary-400"
+    />
+  </div>
+</div>
+
+
+
+      <!-- Select Input-->
+      <div>
+        <label class="text-sm font-medium text-neutral-700">Select Input</label>
+        <div class="relative">
+          <select 
+            class="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-lg
+                  bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-400"
+          >
+            <option>Marketing</option>
+            <option>Design</option>
+            <option>Development</option>
+          </select>
+
+          <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+            <i class="ti ti-chevron-down"></i>
+          </span>
+        </div>
+      </div>
+    
+      <!-- Password -->
+      <div>
+        <label class="text-sm font-medium text-neutral-700">Password Input + Toggle Icon</label>
+        <div class="flex items-center w-full border border-gray-300 rounded-lg bg-white">
+          <input 
+            type="password"
+            class="flex-1 px-4 py-2.5 bg-white focus:outline-none"
+            placeholder="Enter your password"
+          />
+          <button class="px-3 text-gray-500">
+            <i class="ti ti-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Input with Left Icon -->
+      <div>
+        <label class="text-sm font-medium text-neutral-700">Textarea</label>
+        <textarea
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                bg-white text-neutral-800 placeholder-gray-400
+                focus:outline-none focus:ring-2 focus:ring-primary-400"
+          rows="4"
+          placeholder="Enter your description..."
+        ></textarea>
+      </div>
+
+      <!-- File Upload -->
+      <div class="mb-6">
+        <label class="block mb-1 font-medium text-gray-700">Upload File</label>
+
+        <div 
+          class="relative flex items-center w-full border border-gray-300 rounded-md bg-white cursor-pointer overflow-hidden"
+          onclick="this.querySelector('input').click()"
+        >
+            <div class="px-4 py-2 bg-gray-50 border-r border-gray-200 text-gray-700 whitespace-nowrap">
+                Choose File
+            </div>
+
+            <div id="file-name" class="px-4 py-2 text-gray-500">
+                No file chosen
+            </div>
+
+            <input 
+              type="file" 
+              class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              onchange="document.getElementById('file-name').innerText = this.files[0]?.name ?? 'No file chosen'"
+            >
+        </div>
+      </div>
+
 
   </div>
 </section>
@@ -596,19 +716,7 @@
   <h3 class="text-lg font-medium mb-2">Modal (skeleton)</h3>
   <!-- Modal overlay -->
   
-  <div class="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
-    <div class="bg-white w-full max-w-sm p-6 rounded-lg shadow-lg space-y-5">
-
-      <h3 class="text-xl font-semibold">Delete Project?</h3>
-      <p class="text-gray-600">Are you sure you want to delete this project?</p>
-
-      <div class="flex justify-end gap-3">
-        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Cancel</button>
-        <button class="px-4 py-2 bg-red-500 text-white rounded-md">Delete</button>
-      </div>
-
-    </div>
-  </div>
+  
 
 </section>
 

@@ -6,6 +6,16 @@
     <title><?= isset($page_title) ? $page_title : 'RainHUB' ?></title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+
+    <!-- Dropzone CSS & JS (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+    <!-- Tom Select (default theme) -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.min.css" rel="stylesheet"/>
+    <!-- optional: Tom Select complete (JS will be loaded in footer) -->
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>

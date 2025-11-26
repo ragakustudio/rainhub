@@ -26,3 +26,4 @@
 .submenu-item.active {
     @apply bg-white text-[#272727] font-semibold rounded-lg;
 }
+

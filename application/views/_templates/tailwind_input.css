@@ -2,8 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
+/* RESET INPUT DEFAULT BACKGROUND */
+input,
+select,
+textarea {
+  @apply bg-white placeholder-gray-400 text-neutral-800;
+}
+
+/* FOCUS STYLE (BIRU LEMBUT) */
+input:focus,
+textarea:focus,
+select:focus {
+  @apply ring-2 ring-primary-300 border-primary-400 bg-white;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap');
+
+@layer components {
+  .form-input {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2 
+           focus:outline-none focus:ring-2 focus:ring-primary-400
+           bg-white text-neutral-800;
+  }
+}
 
 body {
   font-family: "Public Sans", sans-serif;
 }
+
+/* FIX global input focus background */
+input:focus {
+  @apply bg-white !important;
+}
+
+/* Untuk input-with-icon group */
+.input-with-icon input:focus {
+  @apply bg-white !important;
+}
+
+/* RESET Chrome autofill (background + text color) */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:hover,
+select:-webkit-autofill,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: #0f172a !important; /* neutral-800 */
+  caret-color: #0f172a !important;
+  transition: background-color 5000s ease-in-out 0s; /* prevents flash */
+}
+
+/* TomSelect tweaks to match Ragaku design */
+.ts-control {
+  border-radius: .5rem;
+  border: 1px solid rgba(124, 141, 160, .15);
+  padding: .25rem .5rem;
+  background: white;
+}
+.ts-control .item {
+  background: #13487F !important; /* primary-500 */
+  color: #fff !important;
+  border-radius: .375rem !important;
+  padding: 0.125rem 0.5rem !important;
+  margin-right: 0.25rem !important;
+}
+.ts-control .placeholder {
+  color: rgba(31,41,55, .45);
+}
+.ts-dropdown, .ts-dropdown .active {
+  border-radius: .5rem;
+}
+.ts-dropdown .option.active {
+  background-color: #E8F0F8 !important; /* primary-50 */
+  color: #0B2D4F !important; /* primary-700 */
+}
+
+/* Input-group (icon + input) */
+.input-group {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.input-group .addon {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(124, 141, 160, .15);
+  border-right: 0;
+  background: #fff;
+  border-radius: .5rem 0 0 .5rem;
+}
+.input-group input {
+  border-radius: 0 .5rem .5rem 0;
+  border: 1px solid rgba(124, 141, 160, .15);
+  padding: 0.625rem 0.75rem;
+}
+.input-group .addon svg {
+  width: 20px;
+  height: 20px;
+  color: #6B7280;
+}
+
+/* File input custom */
+.custom-file {
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+}
+.custom-file input[type=file] { display:none; }
+.custom-file .custom-file-button {
+  border: 1px solid rgba(124,141,160,.12);
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  background: #fff;
+}
+.custom-file .custom-file-label {
+  flex:1;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  background: #fff;
+  border: 1px solid rgba(124,141,160,.08);
+}
+
+

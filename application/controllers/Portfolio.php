@@ -2,11 +2,13 @@
 class Portfolio extends CI_Controller {
 
     public function __construct() {
-        parent::__construct();
-        is_logged_in();
-        $this->load->model('Portfolio_model');
-        $this->load->model('Service_model');
-    }
+    parent::__construct();
+    is_logged_in();
+    
+    $this->load->model('Portfolio_model');
+    $this->load->model('Service_model');
+}
+
 
     public function index()
 {
@@ -29,16 +31,26 @@ class Portfolio extends CI_Controller {
 
     public function create()
 {
-    $data['page_title'] = 'Add Project';
-    $data['active'] = 'portfolio';
-
     $this->load->model('Service_model');
 
-    $viewData['services'] = $this->Service_model->get_all();
+    $data['active'] = 'portfolio';
+    $data['page_title'] = 'Add Project';
+
+    // --- FIX: pastikan semua variabel dikirim ---
+    $viewData = [
+        'portfolio'             => null,
+        'services_list'         => $this->Service_model->get_all(),
+        'deliverables_list'     => [],              // FIXED
+        'selected_services'     => [],
+        'selected_deliverables' => [],
+        'images'                => [],              // FIXED
+        'action'                => base_url('portfolio/store')
+    ];
 
     $data['content'] = $this->load->view('portfolio/create', $viewData, true);
     $this->load->view('layouts/main', $data);
 }
+
 
 
     public function store()
@@ -56,7 +68,16 @@ class Portfolio extends CI_Controller {
 
     // Insert ke table portfolio
     $portfolio_id = $this->Portfolio_model->insert($data);
+    $services = $this->input->post('services');
 
+if (!empty($services)) {
+    foreach ($services as $sid) {
+        $this->db->insert('portfolio_services', [
+            'portfolio_id' => $portfolio_id,
+            'service_id'   => $sid
+        ]);
+    }
+}
     // ================================
     //  ASSIGN MULTIPLE SERVICES
     // ================================
@@ -114,30 +135,38 @@ if (!empty($services)) {
 
 
 
-public function edit($id) {
-
-    $this->load->model('Service_model');
-
+public function edit($id)
+{
     $portfolio = $this->Portfolio_model->get_by_id($id);
-    $selected_services = $this->Portfolio_model->get_services_by_portfolio($id);
+    if (!$portfolio) show_404();
 
+    // ambil list services
+    $services_list = $this->Service_model->get_all();
+
+    $images = $this->Portfolio_model->get_images($id);
+
+    // ambil services terpilih
+    $selected_services = $this->Portfolio_model->get_services_by_portfolio($id);
     $selected_ids = array_column($selected_services, 'service_id');
 
-    // **INI WAJIB DITAMBAH**
-    $data['active'] = 'portfolio';
-    $data['page_title'] = 'Edit Portfolio';
+    // SEND DATA
+    $viewData = [
+    'portfolio'             => $portfolio,
+    'services_list'         => $this->Service_model->get_all(),
+    'deliverables_list'     => [],
+    'selected_services'     => $selected_services,
+    'selected_deliverables' => [],
+    'images'                => $images,   // FIXED
+    'action'                => base_url('portfolio/update/'.$id)
+];
 
-    $data['content'] = $this->load->view('portfolio/edit', [
-        'portfolio' => $portfolio,
-        'services'  => $this->Service_model->get_all(),
-        'selected'  => $selected_ids,
-        'images'    => $this->Portfolio_model->get_images($id)
-    ], true);
+
+    $data['active'] = 'portfolio';
+    $data['page_title'] = 'Edit Project';
+    $data['content'] = $this->load->view('portfolio/edit', $viewData, true);
 
     $this->load->view('layouts/main', $data);
 }
-
-
 
 
 
@@ -153,15 +182,15 @@ public function update($id)
        UPDATE DATA TEXT
     ------------------------------ */
     $data = [
-        'client'      => $this->input->post('client'),
-        'year'        => $this->input->post('year'),
-        'discipline'  => $this->input->post('discipline'),
-        'city'        => $this->input->post('city'),
-        'country'     => $this->input->post('country'),
-        'service_id'  => $service_id,
-        'title'       => $this->input->post('title'),
-        'description' => $this->input->post('description'),
-    ];
+    'client'      => $this->input->post('client'),
+    'year'        => $this->input->post('year'),
+    'discipline'  => $this->input->post('discipline'),
+    'city'        => $this->input->post('city'),
+    'country'     => $this->input->post('country'),
+    'title'       => $this->input->post('title'),
+    'description' => $this->input->post('description'),
+];
+
 
     /* ------------------------------
        FEATURE IMAGE UPLOAD
@@ -222,13 +251,28 @@ public function update($id)
 
     $this->db->delete('portfolio_services', ['portfolio_id' => $id]);
 
-$services = $this->input->post('services');
-if (!empty($services)) {
-    foreach ($services as $sid) {
-        $this->db->insert('portfolio_services', [
-            'portfolio_id' => $id,
-            'service_id'   => $sid
-        ]);
+    $services = $this->input->post('services');
+    if (!empty($services)) {
+        foreach ($services as $sid) {
+            $this->db->insert('portfolio_services', [
+                'portfolio_id' => $id,
+                'service_id'   => $sid
+            ]);
+        }
+
+    // DELETE OLD SERVICES
+    $this->db->delete('portfolio_services', ['portfolio_id' => $id]);
+
+    // INSERT NEW SERVICES
+    $services = $this->input->post('services');
+
+    if (!empty($services)) {
+        foreach ($services as $sid) {
+            $this->db->insert('portfolio_services', [
+                'portfolio_id' => $id,
+                'service_id'   => $sid
+            ]);
+        }
     }
 }
 

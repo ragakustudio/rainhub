@@ -69,24 +69,14 @@
                 </p>
             </div>
 
-            <div class="mt-4">
-    <h4 class="font-semibold mb-1">Deliverables</h4>
-
-    <?php if (!empty($services)): ?>
-        <div class="flex flex-wrap gap-2">
-            <?php foreach ($services as $s): ?>
-                <span class="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-md">
-                    <?= $s['service_id'] ?>
-                </span>
-            <?php endforeach; ?>
-        </div>
-    <?php else: ?>
-        <p class="text-gray-500 text-sm">No deliverables assigned</p>
-    <?php endif; ?>
-</div>
-
-
-
+            <div class="mb-4">
+                <?php if (!empty($services)): ?>
+                    <p class="text-gray-700 font-medium">Deliverables</p>
+                    <p class="text-gray-600">
+                        <?= implode(', ', array_map(fn($s) => $s->name, $services)) ?>
+                    </p>
+                <?php endif; ?>
+            </div>
         </div>
 
         <!-- RIGHT COLUMN (60%) -->
@@ -97,8 +87,6 @@
         </div>
 
     </div>
-
-
 
     <!-- DELETE MODAL -->
     <div id="deleteModal" class="hidden fixed inset-0 bg-black/40 flex justify-center items-center">
