@@ -1,0 +1,72 @@
+# ======================================
+# OS / EDITOR FILES
+# ======================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# ======================================
+# COMPOSER / PHP VENDOR
+# ======================================
+/vendor/
+/composer.phar
+composer.lock
+
+# ======================================
+# NODE / TAILWIND / BUILD ASSETS
+# ======================================
+/node_modules/
+package-lock.json
+yarn.lock
+dist/
+build/
+/npm-debug.log
+.yarn-integrity
+.parcel-cache/
+
+# ======================================
+# CODEIGNITER RUNTIME
+# ======================================
+/application/cache/*
+!/application/cache/index.html
+
+/application/logs/*
+!/application/logs/index.html
+
+/application/sessions/*
+!/application/sessions/index.html
+
+# ======================================
+# USER UPLOADS (JANGAN MASUK GIT)
+# ======================================
+/assets/img/portfolio/*
+!/assets/img/portfolio/index.html
+
+/assets/uploads/*
+!/assets/uploads/index.html
+
+# ======================================
+# ENV / CREDENTIALS (JANGAN MASUK GIT)
+# ======================================
+application/config/database.php
+application/config/email.php
+
+# Kalau bikin versi template untuk local:
+# application/config/database.example.php
+
+# ======================================
+# TEMP / BACKUP
+# ======================================
+*.swp
+*.bak
+*.tmp
+*.tar.gz
+*.zip
+
+# ======================================
+# TEST FILES (BUAT DEBUG DI LIVE SERVER)
+# ======================================
+testDB.php
+test_verify.php
+test_session.php
