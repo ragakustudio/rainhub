@@ -1,3 +1,9 @@
+<?php
+$portfolio = $portfolio ?? [];
+$total_project = $total_project ?? 0;
+?>
+
+
 <div class="flex items-center justify-between mb-6">
     
     <div>

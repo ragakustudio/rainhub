@@ -1,3 +1,9 @@
+<?php
+$services_list = $services_list ?? [];
+$selected_services = $selected_services ?? [];
+$images = $images ?? [];
+?>
+
 <div class="p-6">
 
   <h1 class="text-2xl font-semibold mb-6">Add New Project</h1>

@@ -5,37 +5,44 @@ class Auth extends CI_Controller {
         parent::__construct();
         $this->load->model('User_model');
         $this->load->library('session');
+        $this->load->helper('url');
     }
 
     public function index() {
-        if ($this->session->userdata('logged_in')) {
-            return redirect('dashboard');
-        }
-
         $this->load->view('auth/login');
     }
 
     public function login() {
-        $email = $this->input->post('email', true);
-        $password = $this->input->post('password', true);
 
-        $user = $this->User_model->get_by_email($email);
+    $email    = $this->input->post('email');
+    $password = $this->input->post('password');
 
-        if ($user && password_verify($password, $user->password)) {
-            $this->session->set_userdata([
-                'user_id' => $user->id,
-                'name'    => $user->name,
-                'email'   => $user->email,
-                'role'    => $user->role,
-                'logged_in' => true
-            ]);
+    $user = $this->User_model->get_by_email($email);
 
-            return redirect('dashboard');
-        }
-
-        $this->session->set_flashdata('error', 'Email atau password salah!');
-        redirect('auth');
+    if (!$user) {
+        echo "User not found";
+        return;
     }
+
+    if (!password_verify($password, $user->password)) {
+        echo "Wrong password";
+        return;
+    }
+
+    // Set session
+    $this->session->set_userdata([
+        'user_id'   => $user->id,
+        'name'      => $user->name,
+        'username'  => $user->username,
+        'email'     => $user->email,
+        'role'      => $user->role,
+        'logged_in' => true
+    ]);
+
+    redirect('dashboard');
+}
+
+
 
     public function logout() {
         $this->session->sess_destroy();

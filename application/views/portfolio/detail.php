@@ -1,3 +1,9 @@
+<?php
+$portfolio = $portfolio ?? null;
+$services = $services ?? [];
+$images = $images ?? [];
+?>
+
 <div class="space-y-6">
 
     <!-- TOP HEADER -->
